@@ -1,1 +1,60 @@
-<h3>Your Cart:</h3>
+<div class="cart-container">
+  <div *ngIf="items.length > 0" class="cart-panel">
+    <div><h4>Order Total: $40</h4></div>
+    <br />
+    <hr />
+    <br />
+    <ul *ngFor="let item of items">
+      <li class="cart-item">
+        <img [src]="item.url" />
+        <div class="cart-item-details">
+          <h5>{{ item.name }}</h5>
+          <p>${{ item.price }}</p>
+          <input
+            class="number-input"
+            type="number"
+            id="quantity"
+            name="quantity"
+            min="0"
+            max="10"
+          />
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="items.length === 0" class="cart-panel">
+    <h3>There are no items in the cart yet...</h3>
+  </div>
+  <div>
+    <form #form="ngForm" class="form-margin" (ngSubmit)="onSubmit()">
+      <p>Full Name:</p>
+      <input
+        type="text"
+        placeholder="Name..."
+        name="username"
+        [(ngModel)]="username"
+      />
+      <p>Address:</p>
+      <input
+        type="text"
+        placeholder="Address..."
+        name="address"
+        [(ngModel)]="address"
+      />
+      <p>Credit Card Number:</p>
+      <input
+        type="text"
+        placeholder="###..."
+        name="cardNumber"
+        [(ngModel)]="cardNumber"
+      />
+      <br />
+      <input
+        class="btn"
+        [disabled]="items.length === 0"
+        type="Submit"
+        value="Place Order"
+      />
+    </form>
+  </div>
+</div>

@@ -1,10 +1,11 @@
 img {
-  width: 100px;
+  width: 200px;
   border-radius: 10px;
 }
 
 .form-margin {
   margin-bottom: 12px;
+  text-align: left;
 }
 
 .cart-item {
@@ -22,6 +23,7 @@ img {
 }
 
 .number-input {
+  margin: 3px;
   width: 80px;
   text-align: center;
 }
@@ -36,10 +38,32 @@ img {
 .cart-panel {
   margin-left: 50px;
   margin-right: 50px;
+  background-color: aliceblue;
+  padding: 40px;
+  border: solid 1px grey;
 }
 
 .empty-cart-message {
   display: flex;
   justify-content: center;
   margin-top: 64px;
+}
+
+.btn {
+  background-color: #33b5e5;
+  color: white;
+  padding: 6px;
+  font-size: 102%;
+  border: none;
+  width: 315px;
+}
+
+p {
+  margin-left: 20px;
+}
+
+input {
+  width: 300px;
+  margin: 20px;
+  padding: 5px;
 }
