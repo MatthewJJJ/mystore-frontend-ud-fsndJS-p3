@@ -31,7 +31,6 @@ export class ProductItemDetailComponent implements OnInit {
       data.forEach((e) => {
         if (Number(e.id) === Number(this.id)) {
           this.product = e;
-          console.log(e);
         }
       });
     });

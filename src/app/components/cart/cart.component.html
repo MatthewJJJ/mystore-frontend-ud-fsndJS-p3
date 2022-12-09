@@ -1,25 +1,17 @@
 <div class="cart-container">
   <div *ngIf="items.length > 0" class="cart-panel">
-    <div><h4>Order Total: $40</h4></div>
+    <div>
+      <h4>Order Total: ${{ cartTotal }}</h4>
+    </div>
     <br />
     <hr />
     <br />
     <ul *ngFor="let item of items">
-      <li class="cart-item">
-        <img [src]="item.url" />
-        <div class="cart-item-details">
-          <h5>{{ item.name }}</h5>
-          <p>${{ item.price }}</p>
-          <input
-            class="number-input"
-            type="number"
-            id="quantity"
-            name="quantity"
-            min="0"
-            max="10"
-          />
-        </div>
-      </li>
+      <app-cart-item
+        [item]="item"
+        [quantity]="item.quantity"
+        (emitUpdatedCartItem)="updateCart($event)"
+      ></app-cart-item>
     </ul>
   </div>
   <div *ngIf="items.length === 0" class="cart-panel">
@@ -51,7 +43,12 @@
       <br />
       <input
         class="btn"
-        [disabled]="items.length === 0"
+        [disabled]="
+          items.length === 0 ||
+          username === null ||
+          address === null ||
+          cardNumber === null
+        "
         type="Submit"
         value="Place Order"
       />

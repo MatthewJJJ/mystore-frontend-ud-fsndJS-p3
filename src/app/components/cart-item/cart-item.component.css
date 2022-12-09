@@ -1,0 +1,24 @@
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.cart-item-details {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: left;
+  margin-left: 80px;
+}
+
+.number-input {
+  margin: 3px;
+  width: 80px;
+  text-align: center;
+}
+
+img {
+  width: 200px;
+  border-radius: 10px;
+}

@@ -1,3 +1,10 @@
-<p>product-item-detail works!</p>
-<h1>{{ id }}</h1>
-<h1>Name: {{ product.name }}</h1>
+<div class="detail-container">
+  <app-product-item
+    class="product-container"
+    [product]="product"
+  ></app-product-item>
+</div>
+<br />
+<hr />
+<br />
+<a class="back-link" routerLink="/">< Back to Products</a>

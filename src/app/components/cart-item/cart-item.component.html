@@ -1,0 +1,19 @@
+<li class="cart-item">
+  <img [src]="item.url" />
+  <div class="cart-item-details">
+    <h5>{{ item.name }}</h5>
+    <p>${{ item.price }}</p>
+    <form #form="ngForm">
+      <input
+        class="number-input"
+        type="number"
+        id="quantity"
+        name="quantity"
+        min="1"
+        max="10"
+        [(ngModel)]="quantity"
+        (ngModelChange)="onChange($event)"
+      />
+    </form>
+  </div>
+</li>

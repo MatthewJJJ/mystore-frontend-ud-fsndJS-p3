@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import CartItem from 'src/app/models/CartItem';
 import { ProductService } from '../../service/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -13,19 +14,34 @@ export class CartComponent implements OnInit {
   address: string | null;
   cardNumber: number | null;
   cartTotal: number;
+  quantity: number;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private router: Router) {
     this.items = [];
     this.username = null;
     this.address = null;
     this.cardNumber = null;
     this.cartTotal = 0;
+    this.quantity = 0;
   }
 
-  ngOnInit(): void {
-    this.items = this.productService.getCart();
-    console.log(this.items);
-  }
+  recalculatePrice = () => {
+    let tempTotal: number = 0;
+    this.items.forEach((e) => {
+      tempTotal += e.price * e.quantity;
+    });
+    this.cartTotal = tempTotal;
+  };
+
+  updateCart = (cartItem: CartItem) => {
+    this.items.forEach((e, index) => {
+      if (e.name === cartItem.name) {
+        this.items[index] = cartItem;
+      }
+    });
+    this.productService.updateCart(this.items);
+    this.recalculatePrice();
+  };
 
   onSubmit = () => {
     console.log(
@@ -34,5 +50,11 @@ export class CartComponent implements OnInit {
       this.address,
       Number(this.cardNumber)
     );
+    this.router.navigate(['/confirmation']);
   };
+
+  ngOnInit(): void {
+    this.items = this.productService.getCart();
+    this.recalculatePrice();
+  }
 }

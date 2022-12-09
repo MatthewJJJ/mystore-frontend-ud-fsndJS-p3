@@ -46,6 +46,10 @@ export class ProductService {
     console.log('New Cart:', this.cart);
   };
 
+  updateCart = (cart: CartItem[]) => {
+    this.cart = cart;
+  };
+
   getCart = () => {
     return this.cart;
   };

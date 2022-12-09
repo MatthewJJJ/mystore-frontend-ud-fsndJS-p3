@@ -1,31 +1,6 @@
-img {
-  width: 200px;
-  border-radius: 10px;
-}
-
 .form-margin {
   margin-bottom: 12px;
   text-align: left;
-}
-
-.cart-item {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-}
-
-.cart-item-details {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: left;
-  margin-left: 80px;
-}
-
-.number-input {
-  margin: 3px;
-  width: 80px;
-  text-align: center;
 }
 
 .cart-container {
@@ -56,6 +31,10 @@ img {
   font-size: 102%;
   border: none;
   width: 315px;
+}
+
+.btn:disabled {
+  background-color: rgb(215, 213, 213);
 }
 
 p {
