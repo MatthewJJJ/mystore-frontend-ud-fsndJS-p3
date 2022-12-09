@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import CartItem from 'src/app/models/CartItem';
-import { ProductService } from '../../service/product.service';
+import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,17 +10,17 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
   items: CartItem[];
-  username: string | null;
-  address: string | null;
-  cardNumber: number | null;
+  username: string;
+  address: string;
+  cardNumber: number;
   cartTotal: number;
   quantity: number;
 
-  constructor(private productService: ProductService, private router: Router) {
+  constructor(private cartService: CartService, private router: Router) {
     this.items = [];
-    this.username = null;
-    this.address = null;
-    this.cardNumber = null;
+    this.username = '';
+    this.address = '';
+    this.cardNumber = 0;
     this.cartTotal = 0;
     this.quantity = 0;
   }
@@ -39,22 +39,23 @@ export class CartComponent implements OnInit {
         this.items[index] = cartItem;
       }
     });
-    this.productService.updateCart(this.items);
+    this.items = this.items.filter((e) => e.quantity !== 0);
+    this.cartService.updateCart(this.items);
     this.recalculatePrice();
   };
 
   onSubmit = () => {
-    console.log(
-      this.cartTotal,
-      this.username,
-      this.address,
-      Number(this.cardNumber)
-    );
+    this.cartService.sendCartCheckoutDetails({
+      fullPrice: this.cartTotal,
+      name: String(this.username),
+      address: this.address,
+      cardNumber: this.cardNumber,
+    });
     this.router.navigate(['/confirmation']);
   };
 
   ngOnInit(): void {
-    this.items = this.productService.getCart();
+    this.items = this.cartService.getCart();
     this.recalculatePrice();
   }
 }

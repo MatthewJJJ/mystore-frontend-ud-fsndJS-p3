@@ -1,1 +1,14 @@
-<p>confirmation works!</p>
+<div class="confirmation-container">
+  <div class="confirmation-items">
+    <h3 class="confirmation-header">@Success!</h3>
+    <p class="confirmation-item">Thank you, {{ details.name }}</p>
+    <p class="confirmation-item">
+      Your order will cost ${{ details.fullPrice }}
+    </p>
+    <p class="confirmation-item">
+      Expect the charge on your card soon and your order should arrive within
+      1-3 business days!
+    </p>
+    <a class="back-link" routerLink="/">Continue Shopping...</a>
+  </div>
+</div>

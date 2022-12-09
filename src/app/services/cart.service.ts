@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { cloneDeep } from 'lodash';
-import Product from '../models/Product';
 import CartItem from '../models/CartItem';
+import CartCheckoutDetails from '../models/CartCheckoutDetails';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
+export class CartService {
   cart: CartItem[];
+  cartCheckoutDetails: CartCheckoutDetails;
 
-  constructor(private client: HttpClient) {
+  constructor() {
     this.cart = [];
+    this.cartCheckoutDetails = {
+      name: '',
+      address: '',
+      cardNumber: 0,
+      fullPrice: 0,
+    };
   }
-
-  getProducts = (): Observable<Product[]> => {
-    return this.client.get<[Product]>('assets/data.json');
-  };
 
   addToCart = (item: CartItem) => {
     let addToCartItemIndex: number = -1;
@@ -52,5 +53,13 @@ export class ProductService {
 
   getCart = () => {
     return this.cart;
+  };
+
+  sendCartCheckoutDetails = (cartDetails: CartCheckoutDetails) => {
+    this.cartCheckoutDetails = cartDetails;
+  };
+
+  getCartCheckoutDetails = () => {
+    return this.cartCheckoutDetails;
   };
 }

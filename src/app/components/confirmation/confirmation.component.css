@@ -12,9 +12,17 @@
 }
 
 .confirmation-header {
-  color: #33e5bc
+  color: #33e5bc;
 }
 
 .confirmation-item {
   margin-bottom: 30px;
+}
+
+.back-link {
+  margin-top: 20px;
+  color: #33b5e5;
+  padding: 6px;
+  font-size: 102%;
+  border: none;
 }

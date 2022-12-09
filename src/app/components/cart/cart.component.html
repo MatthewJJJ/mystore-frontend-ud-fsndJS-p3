@@ -22,6 +22,7 @@
       <p>Full Name:</p>
       <input
         type="text"
+        minlength="Enter Name (minimum length of 8)"
         placeholder="Name..."
         name="username"
         [(ngModel)]="username"
@@ -29,14 +30,15 @@
       <p>Address:</p>
       <input
         type="text"
-        placeholder="Address..."
+        placeholder="Enter Address (minimum length of 16)"
         name="address"
         [(ngModel)]="address"
       />
       <p>Credit Card Number:</p>
       <input
         type="text"
-        placeholder="###..."
+        minlength="16"
+        placeholder="Enter Card # (minimum length of 16)"
         name="cardNumber"
         [(ngModel)]="cardNumber"
       />
@@ -47,7 +49,10 @@
           items.length === 0 ||
           username === null ||
           address === null ||
-          cardNumber === null
+          cardNumber === null ||
+          username.length < 8 ||
+          address.length < 16 ||
+          cardNumber < 100000000000000
         "
         type="Submit"
         value="Place Order"

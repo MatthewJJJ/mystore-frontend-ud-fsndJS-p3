@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import Product from 'src/app/models/Product';
-import { ProductService } from 'src/app/service/product.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-item',
@@ -11,7 +11,7 @@ export class ProductItemComponent implements OnInit {
   @Input() product: Product;
   quantity: string;
 
-  constructor(private productService: ProductService) {
+  constructor(private cartService: CartService) {
     this.product = {
       id: 0,
       name: '',
@@ -25,7 +25,7 @@ export class ProductItemComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit = () => {
-    this.productService.addToCart({
+    this.cartService.addToCart({
       name: this.product.name,
       price: this.product.price,
       quantity: Number(this.quantity),
