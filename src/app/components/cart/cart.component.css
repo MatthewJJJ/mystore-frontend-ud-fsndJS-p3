@@ -37,6 +37,10 @@
   background-color: rgb(215, 213, 213);
 }
 
+.validation-error {
+  color: red;
+}
+
 p {
   margin-left: 20px;
 }

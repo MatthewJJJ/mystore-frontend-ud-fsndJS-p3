@@ -19,7 +19,13 @@
   </div>
   <div>
     <form #form="ngForm" class="form-margin" (ngSubmit)="onSubmit()">
-      <p>Full Name:</p>
+      <p>Name:</p>
+      <p
+        *ngIf="username.length < 6 && username.length > 0"
+        class="validation-error"
+      >
+        (needs to be at least 6 characters)
+      </p>
       <input
         type="text"
         minlength="Enter Name (minimum length of 6 characters)"
@@ -28,6 +34,12 @@
         [(ngModel)]="username"
       />
       <p>Address:</p>
+      <p
+        *ngIf="address.length < 8 && address.length > 0"
+        class="validation-error"
+      >
+        (needs to be at least 8 characters)
+      </p>
       <input
         type="text"
         placeholder="Enter Address (minimum length of 8 characters)"
@@ -35,8 +47,14 @@
         [(ngModel)]="address"
       />
       <p>Credit Card Number:</p>
+      <p
+        *ngIf="cardNumber !== 0 && cardNumber < 100000000000000"
+        class="validation-error"
+      >
+        (needs to be at least 16 characters)
+      </p>
       <input
-        type="text"
+        type="number"
         minlength="16"
         placeholder="Enter Card # (minimum length of 16 digits)"
         name="cardNumber"
@@ -49,7 +67,8 @@
           items.length === 0 ||
           username.length < 6 ||
           address.length < 8 ||
-          cardNumber.length < 16
+          cardNumber === null ||
+          cardNumber < 100000000000000
         "
         type="Submit"
         value="Place Order"
