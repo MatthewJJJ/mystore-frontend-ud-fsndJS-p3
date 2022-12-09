@@ -21,6 +21,5 @@ export class ConfirmationComponent implements OnInit {
 
   ngOnInit(): void {
     this.details = this.cartService.getCartCheckoutDetails();
-    console.log(this.details);
   }
 }

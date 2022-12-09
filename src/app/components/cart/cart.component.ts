@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
   items: CartItem[];
   username: string;
   address: string;
-  cardNumber: number;
+  cardNumber: string;
   cartTotal: number;
   quantity: number;
 
@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
     this.items = [];
     this.username = '';
     this.address = '';
-    this.cardNumber = 0;
+    this.cardNumber = '';
     this.cartTotal = 0;
     this.quantity = 0;
   }
@@ -45,13 +45,19 @@ export class CartComponent implements OnInit {
   };
 
   onSubmit = () => {
-    this.cartService.sendCartCheckoutDetails({
-      fullPrice: this.cartTotal,
-      name: String(this.username),
-      address: this.address,
-      cardNumber: this.cardNumber,
-    });
-    this.router.navigate(['/confirmation']);
+    if (isNaN(Number(this.cardNumber))) {
+      this.cardNumber = '';
+      alert('Credit card entry must be valid 16 digit number!');
+    } else {
+      this.cartService.sendCartCheckoutDetails({
+        fullPrice: this.cartTotal,
+        name: String(this.username),
+        address: this.address,
+        cardNumber: Number(this.cardNumber),
+      });
+      this.cartService.updateCart([]);
+      this.router.navigate(['/confirmation']);
+    }
   };
 
   ngOnInit(): void {

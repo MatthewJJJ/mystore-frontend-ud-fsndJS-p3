@@ -1,6 +1,6 @@
 # MyStore
 
-This is an ecommerce frontend built with Angular for the Udacity Full Stack Nanodegree Angular course.
+This is an ecommerce frontend built with Angular for the Udacity Full Stack Nanodegree Angular course. You shop for products on the product page, view individual projects on their own page, add them to your cart, and complete a mock purchase (which will show you the details of the transaction).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
